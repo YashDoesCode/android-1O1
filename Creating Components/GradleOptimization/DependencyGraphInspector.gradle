@@ -1,0 +1,7 @@
+tasks.register("inspectDependencyRedundancy") {
+    doLast {
+        configurations.compileClasspath.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+            println "Resolved: ${artifact.moduleVersion.id}"
+        }
+    }
+}
