@@ -1,0 +1,7 @@
+gradle.taskGraph.whenReady { graph ->
+    graph.allTasks.each { task ->
+        if (task.name.startsWith("compile")) {
+            task.outputs.cacheIf { true }
+        }
+    }
+}
