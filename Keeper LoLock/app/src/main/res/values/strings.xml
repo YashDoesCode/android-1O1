@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Keeper LoLock</string>
+    <string name="app_tagline">Argon2id + Blockchain CBC Local Vault</string>
+    
+    <string name="action_encrypt_file">Encrypt File</string>
+    <string name="action_encrypt_folder">Encrypt Directory</string>
+    <string name="action_decrypt_file">Decrypt File</string>
+    <string name="action_decrypt_folder">Decrypt Directory</string>
+    <string name="action_set_password">Set Master Password</string>
+    <string name="action_change_password">Change Master Password</string>
+    
+    <string name="title_unlock_overlay">Encrypted Container</string>
+    <string name="btn_unlock_open">Unlock and Open</string>
+    <string name="btn_decrypt_storage">Decrypt to Storage</string>
+    <string name="hint_enter_password">Enter Container Password</string>
+    <string name="hint_master_password">Master Password</string>
+    <string name="hint_confirm_password">Confirm Master Password</string>
+    
+    <string name="status_password_set">Active - 6-Month Rotation Monitored</string>
+    <string name="status_password_not_set">No Master Password Initialized</string>
+    <string name="status_idle">Ready</string>
+    <string name="status_processing">Processing...</string>
+    <string name="status_complete">Operation Complete</string>
+    
+    <string name="notif_channel_id">keeper_lolock_channel</string>
+    <string name="notif_channel_name">Keeper LoLock Security</string>
+    <string name="notif_expiry_title">Keeper LoLock Security Cycle</string>
+    <string name="notif_expiry_body">180 days elapsed. Routine 6-month master password update recommended.</string>
+    <string name="notif_service_title">Keeper LoLock Active</string>
+    <string name="notif_service_body">Executing cryptographic streaming operation</string>
+</resources>
