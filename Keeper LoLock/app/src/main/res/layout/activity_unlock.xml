@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="24dp"
+    android:background="@drawable/bg_overlay_dialog"
+    android:orientation="vertical"
+    android:padding="22dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_lock_silver" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/title_unlock_overlay"
+            android:textColor="@color/silver_white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTargetFileName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ellipsize="middle"
+        android:fontFamily="monospace"
+        android:maxLines="2"
+        android:text="encrypted_file.lolock"
+        android:textColor="@color/silver_light"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/tvTargetFileSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif"
+        android:text="0 KB"
+        android:textColor="@color/silver_muted"
+        android:textSize="11sp" />
+
+    <EditText
+        android:id="@+id/etUnlockPassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_amoled_input"
+        android:fontFamily="sans-serif"
+        android:hint="@string/hint_enter_password"
+        android:imeOptions="actionDone"
+        android:importantForAutofill="no"
+        android:inputType="textPassword"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:textColor="@color/silver_white"
+        android:textColorHint="@color/silver_dark"
+        android:textSize="14sp" />
+
+    <ProgressBar
+        android:id="@+id/pbUnlockProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginBottom="14dp"
+        android:max="100"
+        android:progressBackgroundTint="@color/amoled_stroke"
+        android:progressTint="@color/silver_light"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnUnlockAndOpen"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_amoled_btn_silver"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/btn_unlock_open"
+        android:textAllCaps="false"
+        android:textColor="@color/amoled_black"
+        android:textSize="14sp"
+        app:backgroundTint="@null" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDecryptToStorage"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_amoled_btn_outline"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/btn_decrypt_storage"
+        android:textAllCaps="false"
+        android:textColor="@color/silver_light"
+        android:textSize="13sp"
+        app:backgroundTint="@null" />
+
+    <TextView
+        android:id="@+id/btnCancelUnlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
+        android:fontFamily="sans-serif"
+        android:padding="8dp"
+        android:text="Dismiss"
+        android:textColor="@color/silver_muted"
+        android:textSize="13sp" />
+</LinearLayout>
