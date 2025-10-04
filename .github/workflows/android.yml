@@ -49,3 +49,10 @@ jobs:
           cd apps/browser
           chmod +x gradlew
           ./gradlew test :app:assembleDebug :lite:assembleDebug --stacktrace
+
+      - name: Build and Test Comms App
+        if: hashFiles('apps/comms/gradlew') != ''
+        run: |
+          cd apps/comms
+          chmod +x gradlew
+          ./gradlew test assembleDebug --stacktrace
