@@ -9,7 +9,7 @@ This repository contains modern, self-contained Android applications engineered 
 | Application | Path | Min SDK | Target / Compile SDK | Key Architecture & Tech Stack | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Scientific Calculator** | [`/apps/calculator`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/calculator) | 28 (Pie) | 35 (Android 15) | Jetpack Compose (M3), MVVM, Shunting-Yard Domain Engine, Haptics | ✅ Phase 1 Complete |
-| **Gallery & Media** | `/apps/gallery` | 28 (Pie) | 35 (Android 15) | MediaStore API, Coil, Room Cache, Paging 3, Zoomable Pager | ⏳ Phase 2 |
+| **Gallery & Media** | [`/apps/gallery`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/gallery) | 28 (Pie) | 35 (Android 15) | MediaStore API, Coil, Room Cache, Pinch-to-Zoom Pager, Permissions Matrix | ✅ Phase 2 Complete |
 | **Browser (Full)** | `/apps/browser` | 28 (Pie) | 35 (Android 15) | Multi-tab WebView, Room Bookmarks/History, DownloadManager | ⏳ Phase 3 |
 | **Browser Lite** | `/apps/browser-lite` | 28 (Pie) | 35 (Android 15) | Single-tab, Data-Saver Mode, Shared Domain Layer | ⏳ Phase 3 |
 | **Comms (Dialer + Mail)** | `/apps/comms` | 28 (Pie) | 35 (Android 15) | `ContactsContract`, Intent Actions, Mock IMAP/SMTP Repository | ⏳ Phase 4 |
