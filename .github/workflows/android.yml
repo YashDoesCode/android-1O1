@@ -56,3 +56,11 @@ jobs:
           cd apps/comms
           chmod +x gradlew
           ./gradlew test assembleDebug --stacktrace
+
+      - name: Build and Test Banking App
+        if: hashFiles('apps/banking/gradlew') != ''
+        run: |
+          cd apps/banking
+          chmod +x gradlew
+          ./gradlew test assembleDebug --stacktrace
+
