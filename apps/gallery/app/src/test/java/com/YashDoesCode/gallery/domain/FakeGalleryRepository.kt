@@ -1,5 +1,6 @@
 package com.YashDoesCode.gallery.domain
 
+import androidx.paging.PagingData
 import com.YashDoesCode.gallery.domain.model.Album
 import com.YashDoesCode.gallery.domain.model.MediaImage
 import com.YashDoesCode.gallery.domain.repository.GalleryRepository
@@ -31,6 +32,13 @@ class FakeGalleryRepository : GalleryRepository {
     override fun getImagesInAlbum(bucketId: String?): Flow<List<MediaImage>> {
         return _images.map { list ->
             if (bucketId == null) list else list.filter { it.bucketId == bucketId }
+        }
+    }
+
+    override fun getPagedImages(bucketId: String?): Flow<PagingData<MediaImage>> {
+        return _images.map { list ->
+            val filtered = if (bucketId == null) list else list.filter { it.bucketId == bucketId }
+            PagingData.from(filtered)
         }
     }
 

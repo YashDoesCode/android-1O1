@@ -3,21 +3,28 @@ package com.YashDoesCode.gallery.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.YashDoesCode.gallery.domain.model.Album
 import com.YashDoesCode.gallery.domain.model.GalleryPermissionState
 import com.YashDoesCode.gallery.domain.model.MediaImage
 import com.YashDoesCode.gallery.domain.usecase.GetAlbumsUseCase
 import com.YashDoesCode.gallery.domain.usecase.GetImageDetailsUseCase
 import com.YashDoesCode.gallery.domain.usecase.GetImagesInAlbumUseCase
+import com.YashDoesCode.gallery.domain.usecase.GetPagedImagesUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.launch
 
 class GalleryViewModel(
     private val getAlbumsUseCase: GetAlbumsUseCase,
     private val getImagesInAlbumUseCase: GetImagesInAlbumUseCase,
+    private val getPagedImagesUseCase: GetPagedImagesUseCase,
     private val getImageDetailsUseCase: GetImageDetailsUseCase
 ) : ViewModel() {
 
@@ -29,6 +36,16 @@ class GalleryViewModel(
 
     private val _isDetailsOpen = MutableStateFlow(false)
     val isDetailsOpen: StateFlow<Boolean> = _isDetailsOpen.asStateFlow()
+
+    private val _currentBucketId = MutableStateFlow<String?>(null)
+    val currentBucketId: StateFlow<String?> = _currentBucketId.asStateFlow()
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val pagedPhotos: Flow<PagingData<MediaImage>> = _currentBucketId
+        .flatMapLatest { bucketId ->
+            getPagedImagesUseCase(bucketId)
+        }
+        .cachedIn(viewModelScope)
 
     private var currentAlbum: Album? = null
 
@@ -82,6 +99,7 @@ class GalleryViewModel(
 
     private fun loadAlbumPhotos(album: Album) {
         currentAlbum = album
+        _currentBucketId.value = album.id
         _uiState.value = GalleryUiState.Loading
         viewModelScope.launch {
             getImagesInAlbumUseCase(album.id)
@@ -114,6 +132,7 @@ class GalleryViewModel(
     class Factory(
         private val getAlbumsUseCase: GetAlbumsUseCase,
         private val getImagesInAlbumUseCase: GetImagesInAlbumUseCase,
+        private val getPagedImagesUseCase: GetPagedImagesUseCase,
         private val getImageDetailsUseCase: GetImageDetailsUseCase
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
@@ -121,6 +140,7 @@ class GalleryViewModel(
             return GalleryViewModel(
                 getAlbumsUseCase,
                 getImagesInAlbumUseCase,
+                getPagedImagesUseCase,
                 getImageDetailsUseCase
             ) as T
         }

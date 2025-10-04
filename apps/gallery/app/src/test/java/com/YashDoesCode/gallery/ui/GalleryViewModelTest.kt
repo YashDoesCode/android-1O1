@@ -7,6 +7,7 @@ import com.YashDoesCode.gallery.domain.model.MediaImage
 import com.YashDoesCode.gallery.domain.usecase.GetAlbumsUseCase
 import com.YashDoesCode.gallery.domain.usecase.GetImageDetailsUseCase
 import com.YashDoesCode.gallery.domain.usecase.GetImagesInAlbumUseCase
+import com.YashDoesCode.gallery.domain.usecase.GetPagedImagesUseCase
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -33,6 +34,7 @@ class GalleryViewModelTest {
         viewModel = GalleryViewModel(
             getAlbumsUseCase = GetAlbumsUseCase(fakeRepository),
             getImagesInAlbumUseCase = GetImagesInAlbumUseCase(fakeRepository),
+            getPagedImagesUseCase = GetPagedImagesUseCase(fakeRepository),
             getImageDetailsUseCase = GetImageDetailsUseCase(fakeRepository)
         )
     }
