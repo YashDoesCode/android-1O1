@@ -23,3 +23,9 @@ rootProject.name = "Browser"
 include(":core")
 include(":app")
 include(":lite")
+
+includeBuild("../design-system") {
+    dependencySubstitution {
+        substitute(module("com.YashDoesCode:design-system")).using(project(":design-system"))
+    }
+}
