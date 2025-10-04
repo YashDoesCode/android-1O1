@@ -42,3 +42,10 @@ jobs:
           cd apps/gallery
           chmod +x gradlew
           ./gradlew test assembleDebug --stacktrace
+
+      - name: Build and Test Browser App (:app & :lite)
+        if: hashFiles('apps/browser/gradlew') != ''
+        run: |
+          cd apps/browser
+          chmod +x gradlew
+          ./gradlew test :app:assembleDebug :lite:assembleDebug --stacktrace

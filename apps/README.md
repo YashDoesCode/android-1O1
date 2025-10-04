@@ -10,8 +10,8 @@ This repository contains modern, self-contained Android applications engineered 
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Scientific Calculator** | [`/apps/calculator`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/calculator) | 28 (Pie) | 35 (Android 15) | Jetpack Compose (M3), MVVM, Shunting-Yard Domain Engine, Haptics | ✅ Phase 1 Complete |
 | **Gallery & Media** | [`/apps/gallery`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/gallery) | 28 (Pie) | 35 (Android 15) | MediaStore API, Coil, Room Cache, Pinch-to-Zoom Pager, Permissions Matrix | ✅ Phase 2 Complete |
-| **Browser (Full)** | `/apps/browser` | 28 (Pie) | 35 (Android 15) | Multi-tab WebView, Room Bookmarks/History, DownloadManager | ⏳ Phase 3 |
-| **Browser Lite** | `/apps/browser-lite` | 28 (Pie) | 35 (Android 15) | Single-tab, Data-Saver Mode, Shared Domain Layer | ⏳ Phase 3 |
+| **Browser (Full)** | [`/apps/browser`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/browser) | 28 (Pie) | 35 (Android 15) | Multi-tab WebView, Room Bookmarks/History, DownloadManager | ✅ Phase 3 Complete |
+| **Browser Lite** | [`/apps/browser`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/browser) | 28 (Pie) | 35 (Android 15) | Single-tab, Data-Saver Mode, Shared Domain Layer | ✅ Phase 3 Complete |
 | **Comms (Dialer + Mail)** | `/apps/comms` | 28 (Pie) | 35 (Android 15) | `ContactsContract`, Intent Actions, Mock IMAP/SMTP Repository | ⏳ Phase 4 |
 | **Banking Suite** | `/apps/banking` | 28 (Pie) | 35 (Android 15) | Offline Room DB, Financial Transfers, Category Analytics, Custom Canvas Charts | ⏳ Phase 5 |
 
