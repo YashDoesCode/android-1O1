@@ -21,3 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Banking"
 include(":app")
+
+includeBuild("../design-system") {
+    dependencySubstitution {
+        substitute(module("com.YashDoesCode:design-system")).using(project(":design-system"))
+    }
+}
