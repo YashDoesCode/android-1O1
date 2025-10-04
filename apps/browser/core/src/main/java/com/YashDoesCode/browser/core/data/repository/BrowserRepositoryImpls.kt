@@ -31,6 +31,10 @@ class BookmarkRepositoryImpl(
         dao.deleteBookmark(id)
     }
 
+    override suspend fun deleteBookmarkByUrl(url: String) = withContext(Dispatchers.IO) {
+        dao.deleteBookmarkByUrl(url)
+    }
+
     override suspend fun isBookmarked(url: String): Boolean = withContext(Dispatchers.IO) {
         if (url.isBlank()) return@withContext false
         dao.countBookmarkByUrl(url) > 0
