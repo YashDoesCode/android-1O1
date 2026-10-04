@@ -1,7 +1,12 @@
 package com.YashDoesCode.comms.ui.dialer
 
+import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -9,12 +14,10 @@ import androidx.compose.material.icons.filled.Contacts
 import androidx.compose.material.icons.filled.Dialpad
 import androidx.compose.material.icons.filled.History
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import com.YashDoesCode.comms.ui.dialer.components.ContactsSection
 import com.YashDoesCode.comms.ui.dialer.components.DialpadSection
 import com.YashDoesCode.comms.ui.dialer.components.RecentsSection
@@ -28,8 +31,32 @@ fun DialerScreen(
     val uiState by viewModel.uiState.collectAsState()
     val context = LocalContext.current
 
+    // Permission launcher for READ_CONTACTS and READ_CALL_LOG
+    val permissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        val hasContacts = permissions[Manifest.permission.READ_CONTACTS] ?: checkPermission(context, Manifest.permission.READ_CONTACTS)
+        val hasCallLog = permissions[Manifest.permission.READ_CALL_LOG] ?: checkPermission(context, Manifest.permission.READ_CALL_LOG)
+        viewModel.onAction(DialerAction.UpdatePermissions(hasContacts = hasContacts, hasCallLog = hasCallLog))
+        viewModel.onAction(DialerAction.Refresh)
+    }
+
+    LaunchedEffect(Unit) {
+        val hasContacts = checkPermission(context, Manifest.permission.READ_CONTACTS)
+        val hasCallLog = checkPermission(context, Manifest.permission.READ_CALL_LOG)
+        viewModel.onAction(DialerAction.UpdatePermissions(hasContacts = hasContacts, hasCallLog = hasCallLog))
+        if (!hasContacts || !hasCallLog) {
+            permissionLauncher.launch(
+                arrayOf(
+                    Manifest.permission.READ_CONTACTS,
+                    Manifest.permission.READ_CALL_LOG
+                )
+            )
+        }
+    }
+
     // Helper to launch Phone Dialer via Intent.ACTION_DIAL
-    // NOTE: Intent.ACTION_DIAL requires NO runtime permission and functions reliably on emulators.
+    // Intent.ACTION_DIAL opens the system dialer with the number prefilled and requires zero runtime permissions on API 28+ emulators and physical devices, whereas Intent.ACTION_CALL directly initiates a call and requires android.permission.CALL_PHONE.
     val onPlaceCall: (String) -> Unit = { phoneNumber ->
         val cleanNumber = phoneNumber.filter { it.isDigit() || it == '+' || it == '*' || it == '#' }
         if (cleanNumber.isNotEmpty()) {
@@ -85,11 +112,19 @@ fun DialerScreen(
                     )
                     DialerSubTab.RECENTS -> RecentsSection(
                         recentCalls = uiState.recentCalls,
+                        hasPermission = uiState.hasCallLogPermission,
+                        onRequestPermission = {
+                            permissionLauncher.launch(arrayOf(Manifest.permission.READ_CALL_LOG))
+                        },
                         onCallClick = onPlaceCall
                     )
                     DialerSubTab.CONTACTS -> ContactsSection(
                         contacts = uiState.filteredContacts,
                         searchQuery = uiState.searchQuery,
+                        hasPermission = uiState.hasContactsPermission,
+                        onRequestPermission = {
+                            permissionLauncher.launch(arrayOf(Manifest.permission.READ_CONTACTS))
+                        },
                         onAction = viewModel::onAction,
                         onCallContact = onPlaceCall
                     )
@@ -97,4 +132,8 @@ fun DialerScreen(
             }
         }
     }
+}
+
+private fun checkPermission(context: Context, permission: String): Boolean {
+    return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
 }
