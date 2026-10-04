@@ -35,3 +35,10 @@ jobs:
           cd apps/calculator
           chmod +x gradlew
           ./gradlew test assembleDebug --stacktrace
+
+      - name: Build and Test Gallery App
+        if: hashFiles('apps/gallery/gradlew') != ''
+        run: |
+          cd apps/gallery
+          chmod +x gradlew
+          ./gradlew test assembleDebug --stacktrace
