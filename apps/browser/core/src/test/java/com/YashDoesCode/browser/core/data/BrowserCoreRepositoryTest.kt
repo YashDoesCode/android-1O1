@@ -31,6 +31,10 @@ class FakeBookmarkDao : BookmarkDao {
         bookmarks.value = bookmarks.value.filter { it.id != id }
     }
 
+    override suspend fun deleteBookmarkByUrl(url: String) {
+        bookmarks.value = bookmarks.value.filter { it.url != url }
+    }
+
     override suspend fun countBookmarkByUrl(url: String): Int {
         return bookmarks.value.count { it.url == url }
     }

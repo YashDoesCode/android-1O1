@@ -16,6 +16,7 @@ class GetBookmarksUseCase(private val repository: BookmarkRepository) {
 
 class DeleteBookmarkUseCase(private val repository: BookmarkRepository) {
     suspend operator fun invoke(id: Long) = repository.deleteBookmark(id)
+    suspend operator fun invoke(url: String) = repository.deleteBookmarkByUrl(url)
 }
 
 class IsBookmarkedUseCase(private val repository: BookmarkRepository) {
