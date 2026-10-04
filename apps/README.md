@@ -12,7 +12,7 @@ This repository contains modern, self-contained Android applications engineered 
 | **Gallery & Media** | [`/apps/gallery`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/gallery) | 28 (Pie) | 35 (Android 15) | MediaStore API, Coil, Room Cache, Pinch-to-Zoom Pager, Permissions Matrix | ✅ Phase 2 Complete |
 | **Browser (Full)** | [`/apps/browser`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/browser) | 28 (Pie) | 35 (Android 15) | Multi-tab WebView, Room Bookmarks/History, DownloadManager | ✅ Phase 3 Complete |
 | **Browser Lite** | [`/apps/browser`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/browser) | 28 (Pie) | 35 (Android 15) | Single-tab, Data-Saver Mode, Shared Domain Layer | ✅ Phase 3 Complete |
-| **Comms (Dialer + Mail)** | `/apps/comms` | 28 (Pie) | 35 (Android 15) | `ContactsContract`, Intent Actions, Mock IMAP/SMTP Repository | ⏳ Phase 4 |
+| **Comms (Dialer + Mail)** | [`/apps/comms`](file:///Users/yashsrivastava/File%20System/Coding/Android%20Development/android-1O1/apps/comms) | 28 (Pie) | 35 (Android 15) | `ContactsContract`, `CallLog`, Room Cache, T9 Dialpad, Intent Actions, In-Memory Mail Engine | ✅ Phase 4 Complete |
 | **Banking Suite** | `/apps/banking` | 28 (Pie) | 35 (Android 15) | Offline Room DB, Financial Transfers, Category Analytics, Custom Canvas Charts | ⏳ Phase 5 |
 
 ---
