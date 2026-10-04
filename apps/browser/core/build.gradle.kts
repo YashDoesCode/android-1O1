@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    api("com.YashDoesCode:design-system")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
