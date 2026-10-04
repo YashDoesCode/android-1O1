@@ -29,6 +29,13 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Build and Test Design System Library
+        if: hashFiles('apps/design-system/gradlew') != ''
+        run: |
+          cd apps/design-system
+          chmod +x gradlew
+          ./gradlew test assembleDebug --stacktrace
+
       - name: Build and Test Calculator App
         if: hashFiles('apps/calculator/gradlew') != ''
         run: |
@@ -63,4 +70,3 @@ jobs:
           cd apps/banking
           chmod +x gradlew
           ./gradlew test assembleDebug --stacktrace
-
