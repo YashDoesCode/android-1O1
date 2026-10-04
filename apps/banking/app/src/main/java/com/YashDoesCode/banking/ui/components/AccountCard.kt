@@ -5,10 +5,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.TrendingUp
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.CreditCard
 import androidx.compose.material.icons.filled.Savings
-import androidx.compose.material.icons.filled.TrendingUp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -34,7 +34,7 @@ fun AccountCard(
         AccountType.CHECKING -> listOf(Color(0xFF1B5E20), Color(0xFF2E7D32)) to Icons.Default.AccountBalance
         AccountType.SAVINGS -> listOf(Color(0xFF004D40), Color(0xFF00796B)) to Icons.Default.Savings
         AccountType.CREDIT_CARD -> listOf(Color(0xFF37474F), Color(0xFF546E7A)) to Icons.Default.CreditCard
-        AccountType.INVESTMENT -> listOf(Color(0xFF311B92), Color(0xFF512DA8)) to Icons.Default.TrendingUp
+        AccountType.INVESTMENT -> listOf(Color(0xFF311B92), Color(0xFF512DA8)) to Icons.AutoMirrored.Filled.TrendingUp
     }
 
     Card(
